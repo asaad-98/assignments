@@ -4,7 +4,6 @@ coverage==7.6.1
 dill==0.3.8
 iniconfig==2.0.0
 isort==5.13.2
-life_expectancy @ file:///C:/Users/ahmed/assignments
 mccabe==0.7.0
 numpy==2.1.0
 packaging==24.1
