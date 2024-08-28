@@ -20,7 +20,10 @@ dev = [
     "pytest",       # Testing framework
     "pylint",       # Code linter for enforcing coding standards
     "pytest-cov",   # Coverage reporting plugin for pytest
-    "toml"          # For working with TOML files
+    "toml",          # For working with TOML files
+    "black",         # Code formatter
+    "flake8",  # Add flake8 here
+    "pre-commit"  # Add pre-commit here
 ]
 
 # Build system configuration
@@ -52,3 +55,9 @@ disable = [
 [tool.mypy]
 plugins = ["pandas-stubs"]
 ignore_missing_imports = true
+
+# black configuration
+[tool.black]
+line-length = 79
+target-version = ['py38']
+skip-string-normalization = false

@@ -1,4 +1,5 @@
 """Test suite for the 1st assignment"""
+
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).parents[2]
