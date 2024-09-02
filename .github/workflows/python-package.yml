@@ -38,6 +38,11 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+
+    - name: Run pre-commit checks (black and flake8)
+      run: |
+          pre-commit run --files life_expectancy/*
+
     - name: Check Python version
       run: python --version
 
