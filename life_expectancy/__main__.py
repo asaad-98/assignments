@@ -1,7 +1,8 @@
 import argparse
 from pathlib import Path
 
-from life_expectancy.data_preprocessing.data_preprocessing import (
+from life_expectancy.region import Region
+from life_expectancy.data_preprocessing.data_cleaning import (
     process_data_file,
 )
 
@@ -10,8 +11,8 @@ if __name__ == "__main__":  # pragma: no cover
     parser = argparse.ArgumentParser(description="Clean life expectancy data")
     parser.add_argument(
         "--country",
-        type=str,
-        default="PT",
+        type=Region,
+        default=Region.PT,
         help="Specify the country code to filter by (default: PT).",
     )
 
@@ -25,5 +26,5 @@ if __name__ == "__main__":  # pragma: no cover
         output_dir=output_data_dir,
         filename=input_file,
         sep="\t",
-        country=None,
+        country=args.country,
     )
