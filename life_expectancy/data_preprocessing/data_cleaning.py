@@ -7,7 +7,7 @@ from .data_loading import load_data, save_data
 def split_and_clean_columns(
     df: pd.DataFrame, column: str, new_columns: list, delimiter: str = ","
 ) -> pd.DataFrame:
-    """Splits a specified column into multiple columnsc."""
+    """Splits a specified column into multiple columns."""
     df[new_columns] = df[column].str.split(delimiter, expand=True)
     df.drop(columns=[column], inplace=True)
     df.columns = df.columns.str.strip()
