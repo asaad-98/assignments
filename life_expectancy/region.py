@@ -83,3 +83,21 @@ class Region(str, Enum):
         return [
             region.value for region in cls if region.value not in non_countries
         ]
+
+    @classmethod
+    def get(cls, name: str) -> "Region":
+        """
+        Returns the Region corresponding to the given string.
+        Args:
+            name (str): The name of the region.
+
+        Returns:
+            Region: The corresponding Region enum value.
+
+        Raises:
+            ValueError: If the name is not a valid Region.
+        """
+        try:
+            return cls[name]
+        except KeyError:
+            raise ValueError(f"'{name}' is not a valid Region")

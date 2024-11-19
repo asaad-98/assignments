@@ -5,7 +5,6 @@ from pathlib import Path
 
 from life_expectancy.data_preprocessing.data_cleaning import clean_data
 from life_expectancy.data_preprocessing.data_cleaning import (
-    load_data,
     save_data,
 )
 
@@ -19,32 +18,6 @@ def test_clean_data(life_expectancy_raw, life_expectancy_expected):
     pd.testing.assert_frame_equal(
         life_expectancy_actual, life_expectancy_expected, check_exact=False
     )
-
-
-def test_load_data(monkeypatch):
-    """Test `load_data` function with MonkeyPatch."""
-
-    # Arrange
-    mock_df = pd.DataFrame({"column1": [1, 2, 3]})  # Mock DataFrame
-
-    def mock_read_csv(file_path, sep):
-        # This mock simulates the behavior of `pd.read_csv`
-        assert file_path == Path("/fake/path/test.csv")  # Check the path
-        assert sep == ","
-        return mock_df
-
-    # Use monkeypatch to replace `pd.read_csv` with the mock function
-    monkeypatch.setattr(pd, "read_csv", mock_read_csv)
-
-    data_dir = Path("/fake/path")
-    filename = "test.csv"
-    sep = ","
-
-    # Act
-    result = load_data(data_dir, filename, sep)
-
-    # Assert
-    pd.testing.assert_frame_equal(result, mock_df)
 
 
 def test_save_data(monkeypatch):

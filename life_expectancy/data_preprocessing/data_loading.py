@@ -1,5 +1,21 @@
 from pathlib import Path
+from .data_loader_strategy import DataLoaderStrategy
 import pandas as pd
+
+
+class TSVDataLoader(DataLoaderStrategy):
+    def __init__(self, sep: str):
+        self.sep = sep
+
+    def load_data(self, data_dir: Path, filename: str) -> pd.DataFrame:
+        file_path = data_dir / filename
+        return pd.read_csv(file_path, sep=self.sep)
+
+
+class JSONDataLoader(DataLoaderStrategy):
+    def load_data(self, data_dir: Path, filename: str) -> pd.DataFrame:
+        file_path = data_dir / filename
+        return pd.read_json(file_path)
 
 
 def load_data(data_dir: Path, filename: str, sep: str) -> pd.DataFrame:

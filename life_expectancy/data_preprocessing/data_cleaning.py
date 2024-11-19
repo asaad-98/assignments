@@ -1,7 +1,8 @@
 from pathlib import Path
 import pandas as pd
 from typing import Optional
-from .data_loading import load_data, save_data
+from .data_loading import save_data
+from .data_loader_strategy import DataLoaderStrategy
 
 
 def split_and_clean_columns(
@@ -66,7 +67,7 @@ def process_data_file(
     input_dir: Path,
     output_dir: Path,
     filename: str,
-    sep: str,
+    loader_strategy: DataLoaderStrategy,
     country: Optional[str] = None,
 ) -> None:
     """
@@ -79,7 +80,7 @@ def process_data_file(
         country: Two-letter country code in caps.
     """
     # Load the data
-    df = load_data(input_dir, filename, sep)
+    df = loader_strategy.load_data(input_dir, filename)
 
     # Clean the data
     cleaned_df = clean_data(df, country)
